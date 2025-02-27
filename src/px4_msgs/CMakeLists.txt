@@ -8,6 +8,12 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 	add_compile_options(-Wall -Wextra)
 endif()
 
+# Ensure CMake prefers Conda libraries at runtime
+set(CMAKE_INSTALL_RPATH "/home/airlab/miniconda3/envs/isaac_env/lib")
+set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
+set(CMAKE_SKIP_BUILD_RPATH FALSE)  # Ensure RPATH is used during build
+set(CMAKE_BUILD_RPATH "/home/airlab/miniconda3/envs/isaac_env/lib")
+
 find_package(ament_cmake REQUIRED)
 find_package(builtin_interfaces REQUIRED)
 find_package(rosidl_default_generators REQUIRED)

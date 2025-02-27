@@ -8,6 +8,12 @@ endif()
 # Define executeable name
 set(EXEC_NAME planner)
 
+# Ensure CMake prefers Conda libraries at runtime
+set(CMAKE_INSTALL_RPATH "/home/airlab/miniconda3/envs/isaac_env/lib")
+set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
+set(CMAKE_SKIP_BUILD_RPATH FALSE)  # Ensure RPATH is used during build
+set(CMAKE_BUILD_RPATH "/home/airlab/miniconda3/envs/isaac_env/lib")
+
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
@@ -30,6 +36,9 @@ ament_target_dependencies(${EXEC_NAME}
                           sensor_msgs
                           pcl_conversions
                           px4_msgs)
+
+
+# add_executable(${EXEC_NAME} src/planner.cpp)
 
 
 install(TARGETS ${EXEC_NAME} DESTINATION lib/${PROJECT_NAME})
