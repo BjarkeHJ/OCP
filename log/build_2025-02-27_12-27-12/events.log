@@ -1,0 +1,330 @@
+[0.000000] (-) TimerEvent: {}
+[0.000174] (path_planner) JobQueued: {'identifier': 'path_planner', 'dependencies': OrderedDict()}
+[0.000428] (path_planner) JobStarted: {'identifier': 'path_planner'}
+[0.006654] (path_planner) JobProgress: {'identifier': 'path_planner', 'progress': 'cmake'}
+[0.007150] (path_planner) Command: {'cmd': ['/usr/bin/cmake', '/home/airlab/OCP/src/path_planner', '-DCMAKE_INSTALL_PREFIX=/home/airlab/OCP/install/path_planner'], 'cwd': '/home/airlab/OCP/build/path_planner', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'en_US:en'), ('USER', 'airlab'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/airlab'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/airlab'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '1826'), ('SYSTEMD_EXEC_PID', '2248'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator23558193cd9818af7fe4d2c2f5bd9d00f'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '2716'), ('COLCON_PREFIX_PATH', '/home/airlab/OCP/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'airlab'), ('JOURNAL_STREAM', '8:17022'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'airlab'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/airlab/miniconda3/condabin:/opt/ros/humble/bin:/home/airlab/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/airlab-Predator-PO3-600:@/tmp/.ICE-unix/2080,unix/airlab-Predator-PO3-600:/tmp/.ICE-unix/2080'), ('INVOCATION_ID', 'a26c7236b5354e919f5ae8c1e80c2a7a'), ('XDG_MENU_PREFIX', 'gnome-'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':1'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'openssh'), ('SSH_AUTH_SOCK', '/run/user/1000/openssh_agent'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/airlab/miniconda3/bin/python'), ('SHELL', '/bin/bash'), ('TERMINATOR_UUID', 'urn:uuid:df7e8883-e109-448f-96ed-866ed4122851'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/airlab/OCP/build/path_planner'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CONDA_EXE', '/home/airlab/miniconda3/bin/conda'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.053233] (path_planner) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.098879] (path_planner) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.099784] (-) TimerEvent: {}
+[0.104938] (path_planner) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.158834] (path_planner) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.167725] (path_planner) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.167882] (path_planner) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.167943] (path_planner) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.169507] (path_planner) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.199876] (-) TimerEvent: {}
+[0.233828] (path_planner) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.240433] (path_planner) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.240596] (path_planner) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.241012] (path_planner) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.242539] (path_planner) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.11 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.300021] (-) TimerEvent: {}
+[0.375902] (path_planner) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[0.400084] (-) TimerEvent: {}
+[0.452046] (path_planner) StdoutLine: {'line': b'-- Found rclcpp: 16.0.11 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[0.485001] (path_planner) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.6 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[0.488720] (path_planner) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.6 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.495407] (path_planner) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.6 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[0.500171] (-) TimerEvent: {}
+[0.506238] (path_planner) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.519905] (path_planner) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.557426] (path_planner) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[0.559293] (path_planner) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.7 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[0.600306] (-) TimerEvent: {}
+[0.631445] (path_planner) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[0.657088] (path_planner) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/humble/include  \n'}
+[0.694544] (path_planner) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[0.700382] (-) TimerEvent: {}
+[0.700836] (path_planner) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[0.762557] (path_planner) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[0.762878] (path_planner) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[0.800470] (-) TimerEvent: {}
+[0.821232] (path_planner) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[0.822628] (path_planner) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[0.881315] (path_planner) StdoutLine: {'line': b'-- Found sensor_msgs: 4.2.4 (/opt/ros/humble/share/sensor_msgs/cmake)\n'}
+[0.900584] (-) TimerEvent: {}
+[0.948908] (path_planner) StdoutLine: {'line': b'-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found suitable version "1.74.0", minimum required is "1.65.0") found components: system iostreams filesystem serialization \n'}
+[0.964807] (path_planner) StdoutLine: {'line': b"-- Checking for module 'flann'\n"}
+[0.975057] (path_planner) StdoutLine: {'line': b'--   Found flann, version 1.9.1\n'}
+[1.000671] (-) TimerEvent: {}
+[1.004939] (path_planner) StdoutLine: {'line': b'-- Found FLANN: /usr/lib/x86_64-linux-gnu/libflann_cpp.so  \n'}
+[1.005125] (path_planner) StdoutLine: {'line': b'-- FLANN found (include: /usr/include, lib: /usr/lib/x86_64-linux-gnu/libflann_cpp.so)\n'}
+[1.100775] (-) TimerEvent: {}
+[1.201046] (-) TimerEvent: {}
+[1.214938] (path_planner) StdoutLine: {'line': b'-- Found OpenMP_CXX: -fopenmp (found version "4.5") \n'}
+[1.215294] (path_planner) StdoutLine: {'line': b'-- Found OpenMP: TRUE (found version "4.5") found components: CXX \n'}
+[1.259078] (path_planner) StdoutLine: {'line': b"-- Checking for module 'libusb-1.0'\n"}
+[1.269490] (path_planner) StdoutLine: {'line': b'--   Found libusb-1.0, version 1.0.25\n'}
+[1.293732] (path_planner) StdoutLine: {'line': b'-- Found libusb: /usr/lib/x86_64-linux-gnu/libusb-1.0.so  \n'}
+[1.294580] (path_planner) StdoutLine: {'line': b'-- Found OpenNI: /usr/lib/libOpenNI.so;libusb::libusb (found version "1.5.4.0") \n'}
+[1.294671] (path_planner) StdoutLine: {'line': b'-- OpenNI found (version: 1.5.4.0, include: /usr/include/ni, lib: /usr/lib/libOpenNI.so;libusb::libusb)\n'}
+[1.301137] (-) TimerEvent: {}
+[1.331288] (path_planner) StdoutLine: {'line': b'-- Found OpenNI2: /usr/lib/x86_64-linux-gnu/libOpenNI2.so;libusb::libusb (found version "2.2.0.33") \n'}
+[1.331415] (path_planner) StdoutLine: {'line': b'-- OpenNI2 found (version: 2.2.0.33, include: /usr/include/openni2, lib: /usr/lib/x86_64-linux-gnu/libOpenNI2.so;libusb::libusb)\n'}
+[1.333276] (path_planner) StdoutLine: {'line': b'-- Could NOT find Pcap (missing: PCAP_LIBRARIES PCAP_INCLUDE_DIRS) \n'}
+[1.333448] (path_planner) StderrLine: {'line': b'\x1b[0m** WARNING ** io features related to pcap will be disabled\x1b[0m\n'}
+[1.341493] (path_planner) StdoutLine: {'line': b'-- Found ZLIB: /usr/lib/x86_64-linux-gnu/libz.so (found version "1.2.11") \n'}
+[1.358698] (path_planner) StdoutLine: {'line': b'-- Found PNG: /usr/lib/x86_64-linux-gnu/libpng.so (found version "1.6.37") \n'}
+[1.395578] (path_planner) StdoutLine: {'line': b'-- Found GLEW: /usr/lib/x86_64-linux-gnu/libGLEW.so  \n'}
+[1.400829] (path_planner) StdoutLine: {'line': b'-- Found OpenGL: /usr/lib/x86_64-linux-gnu/libOpenGL.so  found components: OpenGL GLX \n'}
+[1.401218] (-) TimerEvent: {}
+[1.501487] (-) TimerEvent: {}
+[1.520278] (path_planner) StdoutLine: {'line': b'-- Found MPI_C: /usr/lib/x86_64-linux-gnu/libmpi.so (found version "3.1") \n'}
+[1.520510] (path_planner) StdoutLine: {'line': b'-- Found MPI: TRUE (found version "3.1") found components: C \n'}
+[1.522747] (path_planner) StdoutLine: {'line': b'-- Found JsonCpp: /usr/lib/x86_64-linux-gnu/libjsoncpp.so (found suitable version "1.9.5", minimum required is "0.7.0") \n'}
+[1.559790] (path_planner) StdoutLine: {'line': b'-- Found Eigen3: /usr/include/eigen3 (found version "3.4.0") \n'}
+[1.601519] (-) TimerEvent: {}
+[1.638839] (path_planner) StdoutLine: {'line': b'-- Found X11: /usr/include   \n'}
+[1.639177] (path_planner) StdoutLine: {'line': b'-- Looking for XOpenDisplay in /usr/lib/x86_64-linux-gnu/libX11.so;/usr/lib/x86_64-linux-gnu/libXext.so\n'}
+[1.701621] (-) TimerEvent: {}
+[1.705985] (path_planner) StdoutLine: {'line': b'-- Looking for XOpenDisplay in /usr/lib/x86_64-linux-gnu/libX11.so;/usr/lib/x86_64-linux-gnu/libXext.so - found\n'}
+[1.706154] (path_planner) StdoutLine: {'line': b'-- Looking for gethostbyname\n'}
+[1.762385] (path_planner) StdoutLine: {'line': b'-- Looking for gethostbyname - found\n'}
+[1.762637] (path_planner) StdoutLine: {'line': b'-- Looking for connect\n'}
+[1.801763] (-) TimerEvent: {}
+[1.824521] (path_planner) StdoutLine: {'line': b'-- Looking for connect - found\n'}
+[1.824701] (path_planner) StdoutLine: {'line': b'-- Looking for remove\n'}
+[1.881628] (path_planner) StdoutLine: {'line': b'-- Looking for remove - found\n'}
+[1.881808] (path_planner) StdoutLine: {'line': b'-- Looking for shmat\n'}
+[1.901847] (-) TimerEvent: {}
+[1.942984] (path_planner) StdoutLine: {'line': b'-- Looking for shmat - found\n'}
+[1.943233] (path_planner) StdoutLine: {'line': b'-- Looking for IceConnectionNumber in ICE\n'}
+[2.001996] (-) TimerEvent: {}
+[2.002319] (path_planner) StdoutLine: {'line': b'-- Looking for IceConnectionNumber in ICE - found\n'}
+[2.074737] (path_planner) StdoutLine: {'line': b'-- Found EXPAT: /usr/lib/x86_64-linux-gnu/libexpat.so (found version "2.4.7") \n'}
+[2.076509] (path_planner) StdoutLine: {'line': b'-- Found double-conversion: /usr/lib/x86_64-linux-gnu/libdouble-conversion.so  \n'}
+[2.078731] (path_planner) StdoutLine: {'line': b'-- Found LZ4: /usr/lib/x86_64-linux-gnu/liblz4.so (found version "1.9.3") \n'}
+[2.080456] (path_planner) StdoutLine: {'line': b'-- Found LZMA: /usr/lib/x86_64-linux-gnu/liblzma.so (found version "5.2.5") \n'}
+[2.091821] (path_planner) StdoutLine: {'line': b'-- Found JPEG: /usr/lib/x86_64-linux-gnu/libjpeg.so (found version "80") \n'}
+[2.097306] (path_planner) StdoutLine: {'line': b'-- Found TIFF: /usr/lib/x86_64-linux-gnu/libtiff.so (found version "4.3.0")  \n'}
+[2.101707] (path_planner) StdoutLine: {'line': b'-- Found Freetype: /usr/lib/x86_64-linux-gnu/libfreetype.so (found version "2.11.1") \n'}
+[2.101943] (-) TimerEvent: {}
+[2.106881] (path_planner) StdoutLine: {'line': b'-- Found utf8cpp: /usr/include/utf8cpp  \n'}
+[2.145187] (path_planner) StdoutLine: {'line': b'-- OpenNI found (version: 1.5.4.0, include: /usr/include/ni, lib: /usr/lib/libOpenNI.so;libusb::libusb)\n'}
+[2.150061] (path_planner) StdoutLine: {'line': b'-- OpenNI2 found (version: 2.2.0.33, include: /usr/include/openni2, lib: /usr/lib/x86_64-linux-gnu/libOpenNI2.so;libusb::libusb)\n'}
+[2.202041] (-) TimerEvent: {}
+[2.302257] (-) TimerEvent: {}
+[2.386906] (path_planner) StdoutLine: {'line': b'-- Found Qhull version 8.0.2\n'}
+[2.402408] (-) TimerEvent: {}
+[2.502640] (-) TimerEvent: {}
+[2.602873] (-) TimerEvent: {}
+[2.647907] (path_planner) StdoutLine: {'line': b'-- looking for PCL_COMMON\n'}
+[2.648759] (path_planner) StdoutLine: {'line': b'-- Found PCL_COMMON: /usr/local/lib/libpcl_common.so  \n'}
+[2.648926] (path_planner) StdoutLine: {'line': b'-- looking for PCL_KDTREE\n'}
+[2.649351] (path_planner) StdoutLine: {'line': b'-- Found PCL_KDTREE: /usr/local/lib/libpcl_kdtree.so  \n'}
+[2.649554] (path_planner) StdoutLine: {'line': b'-- looking for PCL_OCTREE\n'}
+[2.649840] (path_planner) StdoutLine: {'line': b'-- Found PCL_OCTREE: /usr/local/lib/libpcl_octree.so  \n'}
+[2.649947] (path_planner) StdoutLine: {'line': b'-- looking for PCL_SEARCH\n'}
+[2.650204] (path_planner) StdoutLine: {'line': b'-- Found PCL_SEARCH: /usr/local/lib/libpcl_search.so  \n'}
+[2.650371] (path_planner) StdoutLine: {'line': b'-- looking for PCL_SAMPLE_CONSENSUS\n'}
+[2.650666] (path_planner) StdoutLine: {'line': b'-- Found PCL_SAMPLE_CONSENSUS: /usr/local/lib/libpcl_sample_consensus.so  \n'}
+[2.650855] (path_planner) StdoutLine: {'line': b'-- looking for PCL_FILTERS\n'}
+[2.651127] (path_planner) StdoutLine: {'line': b'-- Found PCL_FILTERS: /usr/local/lib/libpcl_filters.so  \n'}
+[2.651389] (path_planner) StdoutLine: {'line': b'-- looking for PCL_2D\n'}
+[2.651571] (path_planner) StdoutLine: {'line': b'-- Found PCL_2D: /usr/local/include/pcl-1.14  \n'}
+[2.651671] (path_planner) StdoutLine: {'line': b'-- looking for PCL_GEOMETRY\n'}
+[2.651900] (path_planner) StdoutLine: {'line': b'-- Found PCL_GEOMETRY: /usr/local/include/pcl-1.14  \n'}
+[2.652144] (path_planner) StdoutLine: {'line': b'-- looking for PCL_IO\n'}
+[2.652366] (path_planner) StdoutLine: {'line': b'-- Found PCL_IO: /usr/local/lib/libpcl_io.so  \n'}
+[2.652493] (path_planner) StdoutLine: {'line': b'-- looking for PCL_FEATURES\n'}
+[2.652739] (path_planner) StdoutLine: {'line': b'-- Found PCL_FEATURES: /usr/local/lib/libpcl_features.so  \n'}
+[2.652886] (path_planner) StdoutLine: {'line': b'-- looking for PCL_ML\n'}
+[2.653222] (path_planner) StdoutLine: {'line': b'-- Found PCL_ML: /usr/local/lib/libpcl_ml.so  \n'}
+[2.653413] (path_planner) StdoutLine: {'line': b'-- looking for PCL_SEGMENTATION\n'}
+[2.653737] (path_planner) StdoutLine: {'line': b'-- Found PCL_SEGMENTATION: /usr/local/lib/libpcl_segmentation.so  \n'}
+[2.653909] (path_planner) StdoutLine: {'line': b'-- looking for PCL_VISUALIZATION\n'}
+[2.654340] (path_planner) StdoutLine: {'line': b'-- Found PCL_VISUALIZATION: /usr/local/lib/libpcl_visualization.so  \n'}
+[2.654507] (path_planner) StdoutLine: {'line': b'-- looking for PCL_SURFACE\n'}
+[2.654786] (path_planner) StdoutLine: {'line': b'-- Found PCL_SURFACE: /usr/local/lib/libpcl_surface.so  \n'}
+[2.655042] (path_planner) StdoutLine: {'line': b'-- looking for PCL_REGISTRATION\n'}
+[2.655268] (path_planner) StdoutLine: {'line': b'-- Found PCL_REGISTRATION: /usr/local/lib/libpcl_registration.so  \n'}
+[2.655550] (path_planner) StdoutLine: {'line': b'-- looking for PCL_KEYPOINTS\n'}
+[2.655914] (path_planner) StdoutLine: {'line': b'-- Found PCL_KEYPOINTS: /usr/local/lib/libpcl_keypoints.so  \n'}
+[2.656168] (path_planner) StdoutLine: {'line': b'-- looking for PCL_TRACKING\n'}
+[2.656509] (path_planner) StdoutLine: {'line': b'-- Found PCL_TRACKING: /usr/local/lib/libpcl_tracking.so  \n'}
+[2.656747] (path_planner) StdoutLine: {'line': b'-- looking for PCL_RECOGNITION\n'}
+[2.657151] (path_planner) StdoutLine: {'line': b'-- Found PCL_RECOGNITION: /usr/local/lib/libpcl_recognition.so  \n'}
+[2.657462] (path_planner) StdoutLine: {'line': b'-- looking for PCL_STEREO\n'}
+[2.657836] (path_planner) StdoutLine: {'line': b'-- Found PCL_STEREO: /usr/local/lib/libpcl_stereo.so  \n'}
+[2.658052] (path_planner) StdoutLine: {'line': b'-- looking for PCL_OUTOFCORE\n'}
+[2.658323] (path_planner) StdoutLine: {'line': b'-- Found PCL_OUTOFCORE: /usr/local/lib/libpcl_outofcore.so  \n'}
+[2.658680] (path_planner) StdoutLine: {'line': b'-- looking for PCL_PEOPLE\n'}
+[2.659007] (path_planner) StdoutLine: {'line': b'-- Found PCL_PEOPLE: /usr/local/lib/libpcl_people.so  \n'}
+[2.659829] (path_planner) StdoutLine: {'line': b'-- Found PCL: pcl_common;pcl_kdtree;pcl_octree;pcl_search;pcl_sample_consensus;pcl_filters;pcl_io;pcl_features;pcl_ml;pcl_segmentation;pcl_visualization;pcl_surface;pcl_registration;pcl_keypoints;pcl_tracking;pcl_recognition;pcl_stereo;pcl_outofcore;pcl_people;Boost::system;Boost::iostreams;Boost::filesystem;Boost::serialization;/usr/lib/libOpenNI.so;libusb::libusb;/usr/lib/x86_64-linux-gnu/libOpenNI2.so;libusb::libusb;VTK::ChartsCore;VTK::CommonColor;VTK::CommonComputationalGeometry;VTK::CommonCore;VTK::CommonDataModel;VTK::CommonExecutionModel;VTK::CommonMath;VTK::CommonMisc;VTK::CommonTransforms;VTK::FiltersCore;VTK::FiltersExtraction;VTK::FiltersGeneral;VTK::FiltersGeometry;VTK::FiltersModeling;VTK::FiltersSources;VTK::ImagingCore;VTK::ImagingSources;VTK::InteractionImage;VTK::InteractionStyle;VTK::InteractionWidgets;VTK::IOCore;VTK::IOGeometry;VTK::IOImage;VTK::IOLegacy;VTK::IOPLY;VTK::RenderingAnnotation;VTK::RenderingCore;VTK::RenderingContext2D;VTK::RenderingLOD;VTK::RenderingFreeType;VTK::ViewsCore;VTK::ViewsContext2D;VTK::RenderingOpenGL2;VTK::RenderingContextOpenGL2;VTK::GUISupportQt;FLANN::FLANN;QHULL::QHULL (Required is at least version "1.14") \n'}
+[2.660755] (path_planner) StdoutLine: {'line': b'-- Found pcl_conversions: 2.4.5 (/opt/ros/humble/share/pcl_conversions/cmake)\n'}
+[2.694128] (path_planner) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[2.702960] (-) TimerEvent: {}
+[2.763465] (path_planner) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[2.763691] (path_planner) StdoutLine: {'line': b'-- Configured cppcheck include dirs: \n'}
+[2.763767] (path_planner) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[2.764185] (path_planner) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[2.764898] (path_planner) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[2.765008] (path_planner) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[2.765319] (path_planner) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[2.766176] (path_planner) StdoutLine: {'line': b'-- Configuring done\n'}
+[2.791417] (path_planner) StdoutLine: {'line': b'-- Generating done\n'}
+[2.799143] (path_planner) StdoutLine: {'line': b'-- Build files have been written to: /home/airlab/OCP/build/path_planner\n'}
+[2.803095] (-) TimerEvent: {}
+[2.816531] (path_planner) CommandEnded: {'returncode': 0}
+[2.817194] (path_planner) JobProgress: {'identifier': 'path_planner', 'progress': 'build'}
+[2.817983] (path_planner) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/airlab/OCP/build/path_planner', '--', '-j8', '-l8'], 'cwd': '/home/airlab/OCP/build/path_planner', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'en_US:en'), ('USER', 'airlab'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/airlab'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/airlab'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '1826'), ('SYSTEMD_EXEC_PID', '2248'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator23558193cd9818af7fe4d2c2f5bd9d00f'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '2716'), ('COLCON_PREFIX_PATH', '/home/airlab/OCP/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'airlab'), ('JOURNAL_STREAM', '8:17022'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'airlab'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/airlab/miniconda3/condabin:/opt/ros/humble/bin:/home/airlab/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/airlab-Predator-PO3-600:@/tmp/.ICE-unix/2080,unix/airlab-Predator-PO3-600:/tmp/.ICE-unix/2080'), ('INVOCATION_ID', 'a26c7236b5354e919f5ae8c1e80c2a7a'), ('XDG_MENU_PREFIX', 'gnome-'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':1'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'openssh'), ('SSH_AUTH_SOCK', '/run/user/1000/openssh_agent'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/airlab/miniconda3/bin/python'), ('SHELL', '/bin/bash'), ('TERMINATOR_UUID', 'urn:uuid:df7e8883-e109-448f-96ed-866ed4122851'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/airlab/OCP/build/path_planner'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CONDA_EXE', '/home/airlab/miniconda3/bin/conda'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[2.862616] (path_planner) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/planner.dir/src/planner.cpp.o\x1b[0m\n'}
+[2.903178] (-) TimerEvent: {}
+[3.003489] (-) TimerEvent: {}
+[3.103710] (-) TimerEvent: {}
+[3.204012] (-) TimerEvent: {}
+[3.304292] (-) TimerEvent: {}
+[3.404532] (-) TimerEvent: {}
+[3.504806] (-) TimerEvent: {}
+[3.605090] (-) TimerEvent: {}
+[3.705405] (-) TimerEvent: {}
+[3.805682] (-) TimerEvent: {}
+[3.905906] (-) TimerEvent: {}
+[4.006194] (-) TimerEvent: {}
+[4.106442] (-) TimerEvent: {}
+[4.206712] (-) TimerEvent: {}
+[4.306982] (-) TimerEvent: {}
+[4.407229] (-) TimerEvent: {}
+[4.507503] (-) TimerEvent: {}
+[4.607722] (-) TimerEvent: {}
+[4.707946] (-) TimerEvent: {}
+[4.808190] (-) TimerEvent: {}
+[4.908466] (-) TimerEvent: {}
+[5.008713] (-) TimerEvent: {}
+[5.108940] (-) TimerEvent: {}
+[5.209192] (-) TimerEvent: {}
+[5.309456] (-) TimerEvent: {}
+[5.409684] (-) TimerEvent: {}
+[5.509883] (-) TimerEvent: {}
+[5.610127] (-) TimerEvent: {}
+[5.710355] (-) TimerEvent: {}
+[5.810619] (-) TimerEvent: {}
+[5.910921] (-) TimerEvent: {}
+[6.011226] (-) TimerEvent: {}
+[6.111443] (-) TimerEvent: {}
+[6.211660] (-) TimerEvent: {}
+[6.311880] (-) TimerEvent: {}
+[6.412132] (-) TimerEvent: {}
+[6.512409] (-) TimerEvent: {}
+[6.612628] (-) TimerEvent: {}
+[6.712850] (-) TimerEvent: {}
+[6.813145] (-) TimerEvent: {}
+[6.913361] (-) TimerEvent: {}
+[7.013577] (-) TimerEvent: {}
+[7.113792] (-) TimerEvent: {}
+[7.214042] (-) TimerEvent: {}
+[7.314258] (-) TimerEvent: {}
+[7.414479] (-) TimerEvent: {}
+[7.514749] (-) TimerEvent: {}
+[7.614994] (-) TimerEvent: {}
+[7.715278] (-) TimerEvent: {}
+[7.815559] (-) TimerEvent: {}
+[7.915796] (-) TimerEvent: {}
+[8.016030] (-) TimerEvent: {}
+[8.116283] (-) TimerEvent: {}
+[8.216506] (-) TimerEvent: {}
+[8.316760] (-) TimerEvent: {}
+[8.416984] (-) TimerEvent: {}
+[8.517196] (-) TimerEvent: {}
+[8.617420] (-) TimerEvent: {}
+[8.717623] (-) TimerEvent: {}
+[8.817873] (-) TimerEvent: {}
+[8.918145] (-) TimerEvent: {}
+[9.018396] (-) TimerEvent: {}
+[9.118646] (-) TimerEvent: {}
+[9.218875] (-) TimerEvent: {}
+[9.319135] (-) TimerEvent: {}
+[9.419343] (-) TimerEvent: {}
+[9.519588] (-) TimerEvent: {}
+[9.619806] (-) TimerEvent: {}
+[9.720036] (-) TimerEvent: {}
+[9.820251] (-) TimerEvent: {}
+[9.920556] (-) TimerEvent: {}
+[10.020822] (-) TimerEvent: {}
+[10.121075] (-) TimerEvent: {}
+[10.221295] (-) TimerEvent: {}
+[10.321498] (-) TimerEvent: {}
+[10.421747] (-) TimerEvent: {}
+[10.522010] (-) TimerEvent: {}
+[10.622244] (-) TimerEvent: {}
+[10.722479] (-) TimerEvent: {}
+[10.822764] (-) TimerEvent: {}
+[10.922990] (-) TimerEvent: {}
+[11.023263] (-) TimerEvent: {}
+[11.123619] (-) TimerEvent: {}
+[11.223866] (-) TimerEvent: {}
+[11.324200] (-) TimerEvent: {}
+[11.424448] (-) TimerEvent: {}
+[11.524689] (-) TimerEvent: {}
+[11.624923] (-) TimerEvent: {}
+[11.725295] (-) TimerEvent: {}
+[11.825594] (-) TimerEvent: {}
+[11.925857] (-) TimerEvent: {}
+[12.026081] (-) TimerEvent: {}
+[12.126291] (-) TimerEvent: {}
+[12.226542] (-) TimerEvent: {}
+[12.326801] (-) TimerEvent: {}
+[12.427008] (-) TimerEvent: {}
+[12.527248] (-) TimerEvent: {}
+[12.627601] (-) TimerEvent: {}
+[12.727826] (-) TimerEvent: {}
+[12.828084] (-) TimerEvent: {}
+[12.928293] (-) TimerEvent: {}
+[13.028529] (-) TimerEvent: {}
+[13.128736] (-) TimerEvent: {}
+[13.228980] (-) TimerEvent: {}
+[13.329211] (-) TimerEvent: {}
+[13.429458] (-) TimerEvent: {}
+[13.529719] (-) TimerEvent: {}
+[13.630013] (-) TimerEvent: {}
+[13.730264] (-) TimerEvent: {}
+[13.830448] (-) TimerEvent: {}
+[13.930714] (-) TimerEvent: {}
+[14.030932] (-) TimerEvent: {}
+[14.131204] (-) TimerEvent: {}
+[14.231667] (-) TimerEvent: {}
+[14.331950] (-) TimerEvent: {}
+[14.432182] (-) TimerEvent: {}
+[14.477994] (path_planner) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable planner\x1b[0m\n'}
+[14.532301] (-) TimerEvent: {}
+[14.632541] (-) TimerEvent: {}
+[14.732777] (-) TimerEvent: {}
+[14.833005] (-) TimerEvent: {}
+[14.933287] (-) TimerEvent: {}
+[15.033739] (-) TimerEvent: {}
+[15.134011] (-) TimerEvent: {}
+[15.234285] (-) TimerEvent: {}
+[15.334513] (-) TimerEvent: {}
+[15.434801] (-) TimerEvent: {}
+[15.535097] (-) TimerEvent: {}
+[15.635355] (-) TimerEvent: {}
+[15.735584] (-) TimerEvent: {}
+[15.835837] (-) TimerEvent: {}
+[15.936039] (-) TimerEvent: {}
+[16.036322] (-) TimerEvent: {}
+[16.118813] (path_planner) StdoutLine: {'line': b'[100%] Built target planner\n'}
+[16.127464] (path_planner) CommandEnded: {'returncode': 0}
+[16.127947] (path_planner) JobProgress: {'identifier': 'path_planner', 'progress': 'install'}
+[16.135795] (path_planner) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/airlab/OCP/build/path_planner'], 'cwd': '/home/airlab/OCP/build/path_planner', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'en_US:en'), ('USER', 'airlab'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/airlab'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/airlab'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '1826'), ('SYSTEMD_EXEC_PID', '2248'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator23558193cd9818af7fe4d2c2f5bd9d00f'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '2716'), ('COLCON_PREFIX_PATH', '/home/airlab/OCP/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'airlab'), ('JOURNAL_STREAM', '8:17022'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'airlab'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/airlab/miniconda3/condabin:/opt/ros/humble/bin:/home/airlab/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/airlab-Predator-PO3-600:@/tmp/.ICE-unix/2080,unix/airlab-Predator-PO3-600:/tmp/.ICE-unix/2080'), ('INVOCATION_ID', 'a26c7236b5354e919f5ae8c1e80c2a7a'), ('XDG_MENU_PREFIX', 'gnome-'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':1'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'openssh'), ('SSH_AUTH_SOCK', '/run/user/1000/openssh_agent'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/airlab/miniconda3/bin/python'), ('SHELL', '/bin/bash'), ('TERMINATOR_UUID', 'urn:uuid:df7e8883-e109-448f-96ed-866ed4122851'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/airlab/OCP/build/path_planner'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('CONDA_EXE', '/home/airlab/miniconda3/bin/conda'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[16.136401] (-) TimerEvent: {}
+[16.142187] (path_planner) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[16.142360] (path_planner) StdoutLine: {'line': b'-- Installing: /home/airlab/OCP/install/path_planner/lib/path_planner/planner\n'}
+[16.144758] (path_planner) StdoutLine: {'line': b'-- Set runtime path of "/home/airlab/OCP/install/path_planner/lib/path_planner/planner" to ""\n'}
+[16.144902] (path_planner) StdoutLine: {'line': b'-- Installing: /home/airlab/OCP/install/path_planner/share/ament_index/resource_index/package_run_dependencies/path_planner\n'}
+[16.145063] (path_planner) StdoutLine: {'line': b'-- Installing: /home/airlab/OCP/install/path_planner/share/ament_index/resource_index/parent_prefix_path/path_planner\n'}
+[16.145202] (path_planner) StdoutLine: {'line': b'-- Installing: /home/airlab/OCP/install/path_planner/share/path_planner/environment/ament_prefix_path.sh\n'}
+[16.145274] (path_planner) StdoutLine: {'line': b'-- Installing: /home/airlab/OCP/install/path_planner/share/path_planner/environment/ament_prefix_path.dsv\n'}
+[16.145454] (path_planner) StdoutLine: {'line': b'-- Installing: /home/airlab/OCP/install/path_planner/share/path_planner/environment/path.sh\n'}
+[16.145575] (path_planner) StdoutLine: {'line': b'-- Installing: /home/airlab/OCP/install/path_planner/share/path_planner/environment/path.dsv\n'}
+[16.145776] (path_planner) StdoutLine: {'line': b'-- Installing: /home/airlab/OCP/install/path_planner/share/path_planner/local_setup.bash\n'}
+[16.145862] (path_planner) StdoutLine: {'line': b'-- Installing: /home/airlab/OCP/install/path_planner/share/path_planner/local_setup.sh\n'}
+[16.145968] (path_planner) StdoutLine: {'line': b'-- Installing: /home/airlab/OCP/install/path_planner/share/path_planner/local_setup.zsh\n'}
+[16.146109] (path_planner) StdoutLine: {'line': b'-- Installing: /home/airlab/OCP/install/path_planner/share/path_planner/local_setup.dsv\n'}
+[16.146192] (path_planner) StdoutLine: {'line': b'-- Installing: /home/airlab/OCP/install/path_planner/share/path_planner/package.dsv\n'}
+[16.146426] (path_planner) StdoutLine: {'line': b'-- Installing: /home/airlab/OCP/install/path_planner/share/ament_index/resource_index/packages/path_planner\n'}
+[16.146578] (path_planner) StdoutLine: {'line': b'-- Installing: /home/airlab/OCP/install/path_planner/share/path_planner/cmake/path_plannerConfig.cmake\n'}
+[16.146689] (path_planner) StdoutLine: {'line': b'-- Installing: /home/airlab/OCP/install/path_planner/share/path_planner/cmake/path_plannerConfig-version.cmake\n'}
+[16.146814] (path_planner) StdoutLine: {'line': b'-- Installing: /home/airlab/OCP/install/path_planner/share/path_planner/package.xml\n'}
+[16.148268] (path_planner) CommandEnded: {'returncode': 0}
+[16.161440] (path_planner) JobEnded: {'identifier': 'path_planner', 'rc': 0}
+[16.161695] (-) EventReactorShutdown: {}
