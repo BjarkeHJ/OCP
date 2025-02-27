@@ -1,6 +1,0 @@
-Invoking command in '/home/airlab/OCP/build/path_planner': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/airlab/OCP/src/path_planner -DCMAKE_INSTALL_PREFIX=/home/airlab/OCP/install/path_planner
-Invoked command in '/home/airlab/OCP/build/path_planner' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/airlab/OCP/src/path_planner -DCMAKE_INSTALL_PREFIX=/home/airlab/OCP/install/path_planner
-Invoking command in '/home/airlab/OCP/build/path_planner': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/airlab/OCP/build/path_planner -- -j8 -l8
-Invoked command in '/home/airlab/OCP/build/path_planner' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/airlab/OCP/build/path_planner -- -j8 -l8
-Invoking command in '/home/airlab/OCP/build/path_planner': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/airlab/OCP/build/path_planner
-Invoked command in '/home/airlab/OCP/build/path_planner' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/airlab/OCP/build/path_planner
