@@ -12,6 +12,7 @@ set(EXEC_NAME planner)
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(px4_msgs REQUIRED)
 
 find_package(PCL 1.14 REQUIRED)
 find_package(pcl_conversions REQUIRED)
@@ -27,11 +28,11 @@ target_link_libraries(${EXEC_NAME} ${PCL_LIBRARIES})
 ament_target_dependencies(${EXEC_NAME}
                           rclcpp
                           sensor_msgs
-                          pcl_conversions)
+                          pcl_conversions
+                          px4_msgs)
 
 
 install(TARGETS ${EXEC_NAME} DESTINATION lib/${PROJECT_NAME})
-
 
 
 if(BUILD_TESTING)
