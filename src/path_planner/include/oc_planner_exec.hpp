@@ -24,10 +24,10 @@
 using namespace std::chrono_literals;
 using namespace px4_msgs::msg;
 
-class PathPlanner : public rclcpp::Node {
+class OcPlanner : public rclcpp::Node {
     public:
         /* ROS2 Node */
-        PathPlanner() : Node("path_planner") {
+        OcPlanner() : Node("oc_planner") {
             /* QoS Profile */
             rclcpp::QoS qos_profile(rclcpp::KeepLast(1));
             qos_profile.reliability(RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT);
@@ -36,17 +36,17 @@ class PathPlanner : public rclcpp::Node {
             /* ROS2 Subscribers */
             pcd_sub_ = this->create_subscription<sensor_msgs::msg::PointCloud2>(
                 "/isaac/point_cloud_0", 10,
-                std::bind(&PathPlanner::pcdCallback,  this, std::placeholders::_1));
+                std::bind(&OcPlanner::pcdCallback,  this, std::placeholders::_1));
             odom_sub_ = this->create_subscription<VehicleOdometry>(
                 "/fmu/out/vehicle_odometry", qos_profile, 
-                std::bind(&PathPlanner::odomCallback, this, std::placeholders::_1));
+                std::bind(&OcPlanner::odomCallback, this, std::placeholders::_1));
             
             /* ROS2 Publishers */
             pcd_pub_ = this->create_publisher<sensor_msgs::msg::PointCloud2>("/RP_PointCloud", 10);
             target_pub_ = this->create_publisher<TrajectorySetpoint>("/target_setpoint", 10);
     
             /* ROS2 Timers */
-            target_pub_timer_ = this->create_wall_timer(100ms, std::bind(&PathPlanner::target_timer_callback, this));
+            target_pub_timer_ = this->create_wall_timer(100ms, std::bind(&OcPlanner::target_timer_callback, this));
         }
     
     private:
@@ -67,7 +67,6 @@ class PathPlanner : public rclcpp::Node {
         // void rosa();
     
         // Parameters
-        float gnd_limit = 0.5;
         float ds_leaf_size = 0.5;
     
         float yaw = 3.14;

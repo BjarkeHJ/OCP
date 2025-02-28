@@ -6,7 +6,7 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 # Define executeable name
-set(EXEC_NAME planner)
+set(EXEC_NAME oc_planner_exec)
 
 # Ensure CMake prefers Conda libraries at runtime
 set(CMAKE_INSTALL_RPATH "/home/airlab/miniconda3/envs/isaac_env/lib")
@@ -27,8 +27,7 @@ find_package(pcl_conversions REQUIRED)
 include_directories(include)
 
 # Add executeable from source
-add_executable(${EXEC_NAME} src/planner.cpp)
-
+add_executable(${EXEC_NAME} src/oc_planner_exec.cpp)
 
 # Link non-ROS2 packages
 target_include_directories(${EXEC_NAME} PRIVATE ${PCL_INCLUDE_DIRS})
