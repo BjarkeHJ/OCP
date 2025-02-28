@@ -1,60 +1,5 @@
 #include <planner.hpp>
-
-class PathPlanner : public rclcpp::Node {
-public:
-    PathPlanner() : Node("path_planner") {
-        /* QoS Profile */
-        rclcpp::QoS qos_profile(rclcpp::KeepLast(1));
-        qos_profile.reliability(RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT);
-        qos_profile.durability(RMW_QOS_POLICY_DURABILITY_TRANSIENT_LOCAL);
-
-        /* ROS2 Subscribers */
-        pcd_sub_ = this->create_subscription<sensor_msgs::msg::PointCloud2>(
-            "/isaac/point_cloud_0", 10,
-            std::bind(&PathPlanner::pcdCallback,  this, std::placeholders::_1));
-        odom_sub_ = this->create_subscription<VehicleOdometry>(
-            "/fmu/out/vehicle_odometry", qos_profile, 
-            std::bind(&PathPlanner::odomCallback, this, std::placeholders::_1));
-        
-        /* ROS2 Publishers */
-        pcd_pub_ = this->create_publisher<sensor_msgs::msg::PointCloud2>("/RP_PointCloud", 10);
-        target_pub_ = this->create_publisher<TrajectorySetpoint>("/target_setpoint", 10);
-
-        /* ROS2 Timers */
-        target_pub_timer_ = this->create_wall_timer(100ms, std::bind(&PathPlanner::target_timer_callback, this));
-    }
-
-private:
-    // ROS2 stuff...
-    rclcpp::Subscription<sensor_msgs::msg::PointCloud2>::SharedPtr pcd_sub_;
-    rclcpp::Subscription<VehicleOdometry>::SharedPtr odom_sub_;
-    rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr pcd_pub_;
-    rclcpp::Publisher<TrajectorySetpoint>::SharedPtr target_pub_;
-    rclcpp::TimerBase::SharedPtr target_pub_timer_;
-
-    // ROS2 Callback functions
-    void pcdCallback(const sensor_msgs::msg::PointCloud2::SharedPtr pointcloud_msg);
-    void odomCallback(const VehicleOdometry odom_msgs);
-    void target_timer_callback();
-
-    // Member functons
-    void pcd_preprocess(const pcl::PointCloud<pcl::PointXYZ>::Ptr &pointcloud);
-    // void rosa();
-
-    // Parameters
-    float gnd_limit = 0.5;
-    float ds_leaf_size = 0.5;
-
-    float yaw = 3.14;
-    std::array<float, 3> position = {5.0, 5.0, 40.0};
-
-    //odometry
-    std::array<float, 3> odom_pos;
-    std::array<float, 4> odom_ori;
-
-    // Point Cloud
-    pcl::PointCloud<pcl::PointXYZ>::Ptr current_cloud;
-};
+#include <skeleton_decomp.hpp>
 
 void PathPlanner::pcdCallback(const sensor_msgs::msg::PointCloud2::SharedPtr pointcloud_msg) {
     // Convert point cloud message to pcl object
@@ -99,8 +44,7 @@ void PathPlanner::pcd_preprocess(const pcl::PointCloud<pcl::PointXYZ>::Ptr &poin
     vg.setLeafSize(ds_leaf_size, ds_leaf_size, ds_leaf_size);
     vg.filter(*cloud_ds);
     
-    std::cout << "Downsampld Point Cloud size: " << cloud_ds->points.size() << std::endl;
-
+    
     // Ground Points Removal
     pcl::SACSegmentation<pcl::PointXYZ> seg;
     pcl::PointIndices::Ptr inliers(new pcl::PointIndices);
@@ -118,7 +62,16 @@ void PathPlanner::pcd_preprocess(const pcl::PointCloud<pcl::PointXYZ>::Ptr &poin
     extract.setNegative(true);
     extract.filter(*cloud_no_gnd);
     
-    current_cloud = cloud_no_gnd;
+    pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filtered(new pcl::PointCloud<pcl::PointXYZ>);
+    pcl::StatisticalOutlierRemoval<pcl::PointXYZ> sor;
+    sor.setInputCloud(cloud_no_gnd);
+    sor.setMeanK(50);
+    sor.setStddevMulThresh(0.1);
+    sor.filter(*cloud_filtered);
+
+    std::cout << "Filtered Point Cloud size: " << cloud_filtered->points.size() << std::endl;
+    
+    current_cloud = cloud_filtered;
 }
 
 /* Main Function */
