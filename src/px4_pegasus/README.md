@@ -29,6 +29,13 @@ Isaac Sim should now open...
 Create a conda environment for Isaac Sim and Pegasus Simulator
 ```
 conda create -n isaac_env python=3.10
+
+# Update libstdcxx-ng to satisfy C++17 standards
+conda install -c conda-forge libstdcxx-ng
+
+# Install package dependencies
+pip install catkin_pkg
+pip install lark
 ```
 Create alias in ~/.bashrc
 ```

@@ -23,11 +23,16 @@ find_package(px4_msgs REQUIRED)
 find_package(PCL 1.14 REQUIRED)
 find_package(pcl_conversions REQUIRED)
 
+# Include directories
+include_directories(include)
+
 # Add executeable from source
 add_executable(${EXEC_NAME} src/planner.cpp)
 
-# Handle non-ROS2 packages
+
+# Link non-ROS2 packages
 target_include_directories(${EXEC_NAME} PRIVATE ${PCL_INCLUDE_DIRS})
+target_include_directories(${EXEC_NAME} PUBLIC include)
 target_link_libraries(${EXEC_NAME} ${PCL_LIBRARIES})
 
 # Handle ROS2 specific dependencies
@@ -36,9 +41,6 @@ ament_target_dependencies(${EXEC_NAME}
                           sensor_msgs
                           pcl_conversions
                           px4_msgs)
-
-
-# add_executable(${EXEC_NAME} src/planner.cpp)
 
 
 install(TARGETS ${EXEC_NAME} DESTINATION lib/${PROJECT_NAME})
