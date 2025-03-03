@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include <rclcpp/rclcpp.hpp>
-
+#include <std_msgs/msg/bool.hpp>
 #include <px4_msgs/msg/offboard_control_mode.hpp>
 #include <px4_msgs/msg/trajectory_setpoint.hpp>
 #include <px4_msgs/msg/vehicle_command.hpp>
@@ -18,7 +18,8 @@ public:
         offboard_control_mode_pub_ = this->create_publisher<OffboardControlMode>("/fmu/in/offboard_control_mode", 10);
         trajectory_setpoint_pub_ = this->create_publisher<TrajectorySetpoint>("/fmu/in/trajectory_setpoint", 10);
         vehicle_command_pub_ = this->create_publisher<VehicleCommand>("/fmu/in/vehicle_command", 10);
-        
+        trigger_pub_ = this->create_publisher<std_msgs::msg::Bool>("/trigger_", 10);
+
         /* ROS2 Subscribers */
         target_setpoint_sub_ = this->create_subscription<TrajectorySetpoint>("/target_setpoint", 10, 
                                                                             std::bind(&OffboardControl::setpoint_callback, this, std::placeholders::_1));
@@ -31,6 +32,7 @@ private:
     rclcpp::Publisher<OffboardControlMode>::SharedPtr offboard_control_mode_pub_;
     rclcpp::Publisher<TrajectorySetpoint>::SharedPtr trajectory_setpoint_pub_;
     rclcpp::Publisher<VehicleCommand>::SharedPtr vehicle_command_pub_;
+    rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr trigger_pub_;
     rclcpp::Subscription<TrajectorySetpoint>::SharedPtr target_setpoint_sub_;
     rclcpp::TimerBase::SharedPtr timer_;
 
@@ -76,6 +78,12 @@ void OffboardControl::timer_callback() {
 }
 
 void OffboardControl::arm() {
+    // Publish trigger to initialize PathPlanning Algorithm
+    std_msgs::msg::Bool trigger{};
+    trigger.data = true;
+    trigger_pub_->publish(trigger);
+
+    // Arm Drone ... 
     pub_vehicle_command(VehicleCommand::VEHICLE_CMD_COMPONENT_ARM_DISARM, 1.0);
     RCLCPP_INFO(this->get_logger(), "Arm command send");
 }

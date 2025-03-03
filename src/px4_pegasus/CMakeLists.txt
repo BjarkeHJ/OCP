@@ -18,6 +18,7 @@ set(CMAKE_BUILD_RPATH "/home/airlab/miniconda3/envs/isaac_env/lib")
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(px4_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
 
 set(PYTHON_EXECUTABLE "/home/airlab/miniconda3/envs/isaac_env/bin/python3")
 find_package(Python3 REQUIRED COMPONENTS Interpreter Development)
@@ -28,6 +29,7 @@ add_executable(${EXEC_NAME} src/offboard_control.cpp)
 # Handle ROS2 specific dependencies
 ament_target_dependencies(${EXEC_NAME}
                           rclcpp
+                          std_msgs
                           px4_msgs)
 
 install(TARGETS ${EXEC_NAME} DESTINATION lib/${PROJECT_NAME})
