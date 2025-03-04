@@ -18,7 +18,10 @@ set(CMAKE_BUILD_RPATH "/home/airlab/miniconda3/envs/isaac_env/lib")
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(visualization_msgs REQUIRED)
 find_package(px4_msgs REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_ros REQUIRED)
 
 find_package(PCL 1.14 REQUIRED)
 find_package(pcl_conversions REQUIRED)
@@ -41,6 +44,9 @@ target_link_libraries(${EXEC_NAME} ${PCL_LIBRARIES})
 ament_target_dependencies(${EXEC_NAME}
                           rclcpp
                           sensor_msgs
+                          visualization_msgs
+                          tf2
+                          tf2_ros
                           pcl_conversions
                           px4_msgs)
 

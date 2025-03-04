@@ -1,7 +1,6 @@
 #include <oc_planner_node.hpp>
 
 void OcPlannerNode::init() {
-    
     /* QoS Profile */
     rclcpp::QoS qos_profile(rclcpp::KeepLast(1));
     qos_profile.reliability(RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT);
@@ -25,7 +24,7 @@ void OcPlannerNode::init() {
     /* ROS2 Timers */
     target_pub_timer_ = this->create_wall_timer(100ms, std::bind(&OcPlannerNode::target_timer_callback, this));
     pcd_rp_timer_ = this->create_wall_timer(100ms, std::bind(&OcPlannerNode::pcd_timer_callback, this));
-    
+
     /* Module Initialization */
     PathPlanner.reset(new OcPlanner);
     PathPlanner->init();
@@ -35,24 +34,30 @@ void OcPlannerNode::offboardControlTrigger(const std_msgs::msg::Bool::SharedPtr 
     if (trigger->data && !trigger_flag_) {
         RCLCPP_INFO(this->get_logger(), "Trigger received! Starting OCPlanner... ");
         trigger_flag_ = true;
-        PathPlanner->OCPlan();
         trigger_sub_.reset(); //unsubscribe after first trigger command...
     }
 }
 
 void OcPlannerNode::pcdCallback(const sensor_msgs::msg::PointCloud2::SharedPtr pointcloud_msg) {
-    // Convert point cloud message to pcl object
-    PathPlanner->PR.cloud_in.reset(new pcl::PointCloud<pcl::PointXYZ>);
-    pcl::fromROSMsg(*pointcloud_msg, *PathPlanner->PR.cloud_in);
+    // Only start algorithm when height > 2.0 m... 
+    if (trigger_flag_ && PathPlanner->Odom.odom_pos[2] > 2.0) {
+        if (!processing_) {
+            processing_ = true;
+            // Convert point cloud message to pcl object
+            PathPlanner->P.cloud_in.reset(new pcl::PointCloud<pcl::PointXYZ>);
+            pcl::fromROSMsg(*pointcloud_msg, *PathPlanner->P.cloud_in);
 
-    PathPlanner->pcd_preprocess(PathPlanner->PR.cloud_in);
+            PathPlanner->OCPlan();
+            processing_ = false;
+        }
+    }
 }
 
 void OcPlannerNode::odomCallback(const VehicleOdometry odom_msg) {
     /* Reviece odometry data and convert from NED to ENU */
     std::array<float, 3> temp = odom_msg.position;
-    odom_pos = {temp[1], temp[0], -temp[2]};
-    odom_ori = odom_msg.q;
+    PathPlanner->Odom.odom_pos = {temp[1], temp[0], -temp[2]};
+    PathPlanner->Odom.odom_ori = odom_msg.q;
 }
 
 void OcPlannerNode::target_timer_callback() {
@@ -66,9 +71,12 @@ void OcPlannerNode::target_timer_callback() {
 
 void OcPlannerNode::pcd_timer_callback() {
     // Convert back to ROS2 msg for republishing (Visualization)
-    sensor_msgs::msg::PointCloud2 output;
-    pcl::toROSMsg(*PathPlanner->PR.cloud_filtered, output);
-    output.header.frame_id = "lidar_frame";
-    output.header.stamp = this->get_clock()->now();
-    this->pcd_pub_->publish(output);
+    if (PathPlanner->P.cloud_filtered) {
+        /* if not null ptr */
+        sensor_msgs::msg::PointCloud2 output;
+        pcl::toROSMsg(*PathPlanner->P.cloud_filtered, output);
+        output.header.frame_id = "lidar_frame";
+        output.header.stamp = this->get_clock()->now();
+        this->pcd_pub_->publish(output);
+    }
 }

@@ -6,6 +6,7 @@ int main(int argc, char** argv) {
     rclcpp::Logger logger = rclcpp::get_logger("path_planner");
     RCLCPP_INFO_ONCE(logger, "Starting Path Planning Node...");
     auto OCP_node = std::make_shared<OcPlannerNode>();
+    RCLCPP_INFO_ONCE(logger, "Awaiting Mission Trigger...");
     rclcpp::spin(OCP_node);
     rclcpp::shutdown();
     return 0;

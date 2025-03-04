@@ -7,6 +7,8 @@
 #include <std_msgs/msg/bool.hpp>
 #include <sensor_msgs/msg/point_cloud2.hpp>
 #include <geometry_msgs/msg/transform_stamped.hpp>
+#include <visualization_msgs/msg/marker_array.hpp>
+#include <tf2_ros/transform_broadcaster.h>
 #include <pcl_conversions/pcl_conversions.h>
 
 #include <px4_msgs/msg/trajectory_setpoint.hpp>
@@ -40,19 +42,22 @@ public:
     rclcpp::Publisher<TrajectorySetpoint>::SharedPtr target_pub_;
     rclcpp::TimerBase::SharedPtr target_pub_timer_;
     rclcpp::TimerBase::SharedPtr pcd_rp_timer_;
-
+    
     /* Utils */
     std::unique_ptr<OcPlanner> PathPlanner;
+
+    /* Data */
+    std::array<float, 3> odom_pos;
+    std::array<float, 4> odom_ori;
+
 
 private:
     /* Params */
     bool trigger_flag_ = false;
+    bool processing_ = false;
 
     // ---- TEMPORARY ----
     float yaw = 3.14;
     std::array<float, 3> position = {5.0, 5.0, 40.0};
 
-    //odometry
-    std::array<float, 3> odom_pos;
-    std::array<float, 4> odom_ori;
 };
