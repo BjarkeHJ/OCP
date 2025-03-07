@@ -137,8 +137,10 @@ std::array<float, 3> OffboardControl::transform_ned_enu(const std::array<float, 
 }
 
 float OffboardControl::transform_yaw(const float& input)
-{
-    float new_yaw = -input;
+{   
+    // Yaw should stay the same ... 
+    // Previously we expected yaw to be iverted (-input)
+    float new_yaw = -input + M_PI / 2;
     return new_yaw;
 }
 

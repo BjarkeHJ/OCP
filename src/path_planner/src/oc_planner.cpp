@@ -1,49 +1,17 @@
 #include <oc_planner.hpp>
 
 void OcPlanner::init() {
+    /* Data structures initialization */
     P.cloud_filtered.reset(new pcl::PointCloud<pcl::PointXYZ>);
     P.pts_.reset(new pcl::PointCloud<pcl::PointXYZ>);
     P.normals_.reset(new pcl::PointCloud<pcl::Normal>);
 }
 
 void OcPlanner::OCPlan() {
-    pcd_preprocess();
-    rosa();
+    // rosa();
+
 }
 
-void OcPlanner::pcd_preprocess() {
-    // Uniform downsampling using VoxelGrid filter 
-    pcl::VoxelGrid<pcl::PointXYZ> vg;
-    pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_ds(new pcl::PointCloud<pcl::PointXYZ>);
-    vg.setInputCloud(P.cloud_in);
-    vg.setLeafSize(ds_leaf_size, ds_leaf_size, ds_leaf_size);
-    vg.filter(*cloud_ds);
-    
-    pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_no_gnd(new pcl::PointCloud<pcl::PointXYZ>);
-
-    // Ground Points Removal
-    pcl::SACSegmentation<pcl::PointXYZ> seg;
-    pcl::PointIndices::Ptr inliers(new pcl::PointIndices);
-    pcl::ModelCoefficients::Ptr coefs(new pcl::ModelCoefficients);
-    pcl::ExtractIndices<pcl::PointXYZ> extract;
-    seg.setOptimizeCoefficients(true);
-    seg.setModelType(pcl::SACMODEL_PLANE);
-    seg.setMethodType(pcl::SAC_RANSAC);
-    seg.setDistanceThreshold(1.0); // Larger tolerance to remove points close to segmented plane
-    seg.setInputCloud(cloud_ds);
-    seg.segment(*inliers, *coefs);
-    extract.setInputCloud(cloud_ds);
-    extract.setIndices(inliers);
-    extract.setNegative(true);
-    extract.filter(*cloud_no_gnd);
-
-    // Statistical Outlier Removal
-    pcl::StatisticalOutlierRemoval<pcl::PointXYZ> sor;
-    sor.setInputCloud(cloud_no_gnd);
-    sor.setMeanK(100);
-    sor.setStddevMulThresh(0.01);
-    sor.filter(*P.cloud_filtered);
-}
 
 /* ROSA Computation */
 
@@ -102,7 +70,6 @@ void OcPlanner::normalize() {
     pcl::concatenateFields(*P.pts_, *P.normals_, *P.cloud_w_normals);
 
     pcd_size_ = P.cloud_w_normals->points.size();
-    std::cout << "Point cloud size: " << pcd_size_ << "\n";
     P.pts_.reset(new pcl::PointCloud<pcl::PointXYZ>);
     P.normals_.reset(new pcl::PointCloud<pcl::Normal>);
     pcl::PointXYZ pt;

@@ -5,6 +5,9 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
+# Set Policy
+cmake_policy(SET CMP0074 NEW)
+
 # Define executeable name
 set(EXEC_NAME oc_planner)
 
@@ -18,13 +21,16 @@ set(CMAKE_BUILD_RPATH "/home/airlab/miniconda3/envs/isaac_env/lib")
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
-find_package(visualization_msgs REQUIRED)
+find_package(tf2_geometry_msgs REQUIRED)
 find_package(px4_msgs REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_ros REQUIRED)
+find_package(pcl_ros REQUIRED)
 
-find_package(PCL 1.14 REQUIRED)
+find_package(PCL 1.12 REQUIRED)
 find_package(pcl_conversions REQUIRED)
+
+find_package(Boost REQUIRED COMPONENTS date_time)
 
 # Include directories
 include_directories(include)
@@ -33,20 +39,22 @@ include_directories(include)
 add_executable(${EXEC_NAME}
               src/main_exec.cpp
               src/oc_planner_node.cpp
-              src/oc_planner.cpp)
+              src/oc_planner.cpp
+              src/voxel_mapper.cpp)
 
 # Link non-ROS2 packages
 target_include_directories(${EXEC_NAME} PRIVATE ${PCL_INCLUDE_DIRS})
 target_include_directories(${EXEC_NAME} PUBLIC include)
-target_link_libraries(${EXEC_NAME} ${PCL_LIBRARIES})
+target_link_libraries(${EXEC_NAME} ${PCL_LIBRARIES} Boost::date_time)
 
 # Handle ROS2 specific dependencies
 ament_target_dependencies(${EXEC_NAME}
                           rclcpp
                           sensor_msgs
-                          visualization_msgs
+                          tf2_geometry_msgs
                           tf2
                           tf2_ros
+                          pcl_ros
                           pcl_conversions
                           px4_msgs)
 
