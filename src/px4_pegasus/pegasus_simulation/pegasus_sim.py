@@ -248,7 +248,7 @@ class PegasusApp:
                     ("RTXLidar.inputs:topicName", f"{topic_name}"),
                     ("RTXLidar.inputs:type", "point_cloud"),
                     ("RTXLidar.inputs:frameId", "lidar_frame"),
-                    ("RTXLidar.inputs:fullScan", False),
+                    ("RTXLidar.inputs:fullScan", True),
                     ("CreateRenderProduct.inputs:cameraPrim", f"{prims_utils.get_prim_path(lidar)}",
                     ),
                 ],

@@ -18,7 +18,7 @@ public:
         offboard_control_mode_pub_ = this->create_publisher<OffboardControlMode>("/fmu/in/offboard_control_mode", 10);
         trajectory_setpoint_pub_ = this->create_publisher<TrajectorySetpoint>("/fmu/in/trajectory_setpoint", 10);
         vehicle_command_pub_ = this->create_publisher<VehicleCommand>("/fmu/in/vehicle_command", 10);
-        trigger_pub_ = this->create_publisher<std_msgs::msg::Bool>("/trigger_", 10);
+        trigger_pub_ = this->create_publisher<std_msgs::msg::Bool>("/trigger", 10);
 
         /* ROS2 Subscribers */
         target_setpoint_sub_ = this->create_subscription<TrajectorySetpoint>("/target_setpoint", 10, 

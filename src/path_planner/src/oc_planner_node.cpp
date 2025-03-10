@@ -11,7 +11,7 @@ void OcPlannerNode::init() {
         "/isaac/point_cloud_0", 10,
         std::bind(&OcPlannerNode::pcdCallback,  this, std::placeholders::_1));
     trigger_sub_ = this->create_subscription<std_msgs::msg::Bool>(
-        "/trigger_", rclcpp::QoS(1).reliable().keep_last(1),
+        "/trigger", rclcpp::QoS(1).reliable().keep_last(1),
         std::bind(&OcPlannerNode::offboardControlTrigger, this, std::placeholders::_1));
 
     /* ROS2 Publishers */
@@ -21,19 +21,18 @@ void OcPlannerNode::init() {
 
     /* ROS2 Timers */
     target_pub_timer_ = this->create_wall_timer(100ms, std::bind(&OcPlannerNode::target_timer_callback, this));
-    pcd_rp_timer_ = this->create_wall_timer(10ms, std::bind(&OcPlannerNode::pcd_timer_callback, this));
+    pcd_rp_timer_ = this->create_wall_timer(100ms, std::bind(&OcPlannerNode::pcd_timer_callback, this));
     voxel_timer_ =  this->create_wall_timer(100ms, std::bind(&OcPlannerNode::voxel_timer_callback, this));
-    run_timer_ = this->create_wall_timer(10ms, std::bind(&OcPlannerNode::run_timer_callback, this));
+    run_timer_ = this->create_wall_timer(100ms, std::bind(&OcPlannerNode::run_timer_callback, this));
 
-    /* ROS2 Transform */
+    /* ROS2 Transforms */
     tf_buffer_ = std::make_shared<tf2_ros::Buffer>(this->get_clock());
     tf_listener_ = std::make_shared<tf2_ros::TransformListener>(*tf_buffer_);
 
     /* Module Initialization */
     PathPlanner.reset(new OcPlanner);
+    PathPlanner->tolerance = tolerance; // Set tolerance for voxelmapping (Before initialization!)
     PathPlanner->init();
-    VoxMap.reset(new VoxelMapper);
-    VoxMap->init(tf_buffer_);
 
     /* Data Storage Initialization */
     current_cloud.reset(new pcl::PointCloud<pcl::PointXYZ>);
@@ -49,6 +48,7 @@ void OcPlannerNode::offboardControlTrigger(const std_msgs::msg::Bool::SharedPtr 
 }
 
 void OcPlannerNode::pcdCallback(const sensor_msgs::msg::PointCloud2::SharedPtr pointcloud_msg) {
+    std::lock_guard<std::mutex> lock(cloud_mutex);
     pcl::fromROSMsg(*pointcloud_msg, *current_cloud); // Store current cloud ... 
 }
 
@@ -57,23 +57,27 @@ void OcPlannerNode::target_timer_callback() {
     TrajectorySetpoint msg{};
     msg.position = position_temp;
     msg.yaw = yaw_temp;
-    msg.timestamp = this->get_clock()->now().nanoseconds() / 1000.0;
+    msg.timestamp = this->get_clock()->now().nanoseconds() / 1000;
     this->target_pub_->publish(msg);
 }
 
 void OcPlannerNode::pcd_timer_callback() {
+    if (PathPlanner->VoxMap->OCM.local_cloud->empty()) return;
+    
     /* Publish current filtered point cloud */
     sensor_msgs::msg::PointCloud2 output;
-    pcl::toROSMsg(*PathPlanner->P.cloud_filtered, output);
+    pcl::toROSMsg(*PathPlanner->VoxMap->OCM.local_cloud, output);
     output.header.frame_id = "lidar_frame";
     output.header.stamp = this->get_clock()->now();
     this->pcd_pub_->publish(output);
 }
 
 void OcPlannerNode::voxel_timer_callback() {
+    if (PathPlanner->VoxMap->OCM.global_map->empty()) return;
+
     /* Publish Current Voxelmap */
     sensor_msgs::msg::PointCloud2 vm;
-    pcl::toROSMsg(*VoxMap->OCM.global_map, vm);
+    pcl::toROSMsg(*PathPlanner->VoxMap->OCM.global_map, vm);
     vm.header.frame_id = "odom";
     vm.header.stamp = this->get_clock()->now();
     voxel_pub_->publish(vm);
@@ -81,7 +85,7 @@ void OcPlannerNode::voxel_timer_callback() {
 
 void OcPlannerNode::run_timer_callback() {
     /* Periodically check if OcPlanner is readdy - Execute if it is */
-    if (offboard_control_trigger_ && run_trigger_) {
+    if (offboard_control_trigger_ && run_trigger_ && !current_cloud->empty()) {
         OcRunner();
     }
 }
@@ -89,13 +93,13 @@ void OcPlannerNode::run_timer_callback() {
 void OcPlannerNode::OcRunner() {
     // Preprocess the current point cloud ...
     cloud_preprocess(current_cloud);
-    // Update the Voxel Map ...
-    VoxMap->update_map();
     // Plan according to Voxel Map and point cloud ...
     PathPlanner->OCPlan();
 }
 
 void OcPlannerNode::cloud_preprocess(const pcl::PointCloud<pcl::PointXYZ>::Ptr &cloud) {
+    std::lock_guard<std::mutex> lock(cloud_mutex);
+
     // Uniform downsampling using VoxelGrid filter 
     pcl::VoxelGrid<pcl::PointXYZ> vg;
     pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_ds(new pcl::PointCloud<pcl::PointXYZ>);
@@ -107,11 +111,40 @@ void OcPlannerNode::cloud_preprocess(const pcl::PointCloud<pcl::PointXYZ>::Ptr &
     pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_filt(new pcl::PointCloud<pcl::PointXYZ>);
     pcl::RadiusOutlierRemoval<pcl::PointXYZ> ror;
     ror.setInputCloud(cloud_ds);
-    ror.setRadiusSearch(1.0); // Radius for checking neighbors
-    ror.setMinNeighborsInRadius(7); // Minimum number of neighbors in the radius
+    ror.setRadiusSearch(2*ds_leaf_size); // Radius for checking neighbors
+    ror.setMinNeighborsInRadius(5); // Minimum number of neighbors in the radius
     ror.filter(*cloud_filt);
 
-    // Store filtered cloud for PathPlanning and VoxelMapping respectively
-    PathPlanner->P.cloud_filtered = cloud_filt;
-    VoxMap->OCM.local_cloud = cloud_filt;
+    try {
+        if (cloud_filt->empty()) {
+            // std::cout << "Warning: Point cloud empty - Skipping transform..." << std::endl;
+            return;
+        }
+
+        // Transform point cloud from lidar_frame to odom frame
+        pcl::PointCloud<pcl::PointXYZ>::Ptr transformed_cloud(new pcl::PointCloud<pcl::PointXYZ>);
+        pcl_ros::transformPointCloud("odom", *cloud_filt, *transformed_cloud, *tf_buffer_);
+        
+        // Ground points removal
+        pcl::PointCloud<pcl::PointXYZ>::Ptr gnd_rm(new pcl::PointCloud<pcl::PointXYZ>);
+        pcl::PassThrough<pcl::PointXYZ> pass;
+        pass.setInputCloud(transformed_cloud);
+        pass.setFilterFieldName("z");
+        pass.setFilterLimits(ground_height, std::numeric_limits<float>::max()); // Remove everything below 2m
+        pass.filter(*gnd_rm);
+
+        // Store transformed and filtered cloud for VoxelMapping
+        PathPlanner->VoxMap->OCM.local_cloud = gnd_rm;
+        
+        // Transform cloud segment back to lidar frame and use for PathPlanner...
+        if (!gnd_rm->empty()) {
+            geometry_msgs::msg::TransformStamped transform_stamped;
+            transform_stamped = tf_buffer_->lookupTransform("lidar_frame", "odom", tf2::TimePointZero);
+            pcl_ros::transformPointCloud(*gnd_rm, *PathPlanner->P.cloud_filtered, transform_stamped);
+        }
+    }
+    catch (tf2::TransformException &e) {
+                std::cout << "Transform Failed: " << e.what() << std::endl;
+                return;
+    }
 }

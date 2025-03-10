@@ -40,6 +40,7 @@ add_executable(${EXEC_NAME}
               src/main_exec.cpp
               src/oc_planner_node.cpp
               src/oc_planner.cpp
+              src/rosa_main.cpp
               src/voxel_mapper.cpp)
 
 # Link non-ROS2 packages

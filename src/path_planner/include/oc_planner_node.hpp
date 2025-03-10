@@ -13,13 +13,13 @@
 
 #include <tf2_ros/buffer.h>
 #include <tf2_ros/transform_listener.h>
+#include <pcl_ros/transforms.hpp>
 #include <pcl_conversions/pcl_conversions.h>
 
 #include <px4_msgs/msg/trajectory_setpoint.hpp>
 #include <px4_msgs/msg/vehicle_odometry.hpp>
 
 #include <oc_planner.hpp>
-#include <voxel_mapper.hpp>
 
 using namespace std::chrono_literals;
 using namespace px4_msgs::msg;
@@ -58,7 +58,6 @@ public:
 
     /* Utils */
     std::unique_ptr<OcPlanner> PathPlanner;
-    std::unique_ptr<VoxelMapper> VoxMap;
 
     /* Data */
     pcl::PointCloud<pcl::PointXYZ>::Ptr current_cloud;
@@ -69,9 +68,15 @@ private:
     bool run_trigger_ = true;
     bool processing_ = false;
     float ds_leaf_size = 0.5;
+    float tolerance = ds_leaf_size;
+    float ground_height = 2.0; // Height for ground point removal
+    int rs_kN = 5; // k neighbours for radius outlier removal
+
+    /* Utils */
+    std::mutex cloud_mutex; // For thread safety
 
     // ---- TEMPORARY ----
     float yaw_temp = 0.0;
-    std::array<float, 3> position_temp = {3.0, 2.0, 45.0};
+    std::array<float, 3> position_temp = {3.0, 2.0, 10.0};
 
 };
