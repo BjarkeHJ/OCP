@@ -11,12 +11,12 @@ void RosaPoints::rosa_main(pcl::PointCloud<pcl::PointXYZ>::Ptr &cloud) {
     normalize();
     adj_matrix(r_range);
 }
-
+    
 void RosaPoints::set_cloud(pcl::PointCloud<pcl::PointXYZ>::Ptr &cloud) {
     RC.orig_pts_.reset(new pcl::PointCloud<pcl::PointXYZ>);
     RC.normals_.reset(new pcl::PointCloud<pcl::Normal>);
     RC.orig_pts_ = cloud;
-    pcd_size_ = RC.pts_->points.size();
+    pcd_size_ = RC.orig_pts_->points.size();
 }
 
 void RosaPoints::normal_estimation() {
@@ -24,8 +24,7 @@ void RosaPoints::normal_estimation() {
         pcl::NormalEstimation<pcl::PointXYZ, pcl::Normal> ne;
         ne.setInputCloud(RC.pts_);
 
-        // pcl::search::KdTree<pcl::PointXYZ>::Ptr tree(new pcl::search::KdTree<pcl::PointXYZ>());
-        auto tree = std::make_shared<pcl::search::KdTree<pcl::PointXYZ>>();
+        pcl::search::KdTree<pcl::PointXYZ>::Ptr tree(new pcl::search::KdTree<pcl::PointXYZ>());
         ne.setSearchMethod(tree);
 
         pcl::PointCloud<pcl::Normal>::Ptr cloud_normals(new pcl::PointCloud<pcl::Normal>);
@@ -73,16 +72,11 @@ void RosaPoints::normalize() {
     RC.cloud_w_normals.reset(new pcl::PointCloud<pcl::PointNormal>);
     pcl::concatenateFields(*RC.pts_, *RC.normals_, *RC.cloud_w_normals);
 
-    RC.pts_.reset(new pcl::PointCloud<pcl::PointXYZ>);
-    RC.normals_.reset(new pcl::PointCloud<pcl::Normal>);
-    pcl::PointXYZ pt;
+    // RC.normals_.reset(new pcl::PointCloud<pcl::Normal>);
+    RC.normals_->clear();
     pcl::Normal normal;
 
     for (int i=0; i<pcd_size_; ++i) {
-        // pt.x = RC.cloud_w_normals->points[i].x; 
-        // pt.y = RC.cloud_w_normals->points[i].y; 
-        // pt.z = RC.cloud_w_normals->points[i].z; 
-        // RC.pts_->points.push_back(pt);
         normal.normal_x = -RC.cloud_w_normals->points[i].normal_x; 
         normal.normal_y = -RC.cloud_w_normals->points[i].normal_y; 
         normal.normal_z = -RC.cloud_w_normals->points[i].normal_z;
@@ -117,6 +111,7 @@ void RosaPoints::adj_matrix(float &range_r) {
     
     pcl::KdTreeFLANN<pcl::PointXYZ> tree;
     tree.setInputCloud(RC.pts_); // Normalized points
+    
     pcl::PointXYZ search_pt, p1, p2;
     pcl::Normal v1, v2;
     std::vector<int> indxs;
@@ -148,13 +143,6 @@ void RosaPoints::adj_matrix(float &range_r) {
             }
         }
         RC.neighs[i] = temp_neighs;
-
-        std::cout << temp_neighs.size() << std::endl;
-
-        // for (int i=0; i<(int)temp_neighs.size(); i++) {
-        //     std::cout << temp_neighs[i] << std::endl;
-        // }
-
     }
 }
 
