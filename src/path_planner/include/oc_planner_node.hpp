@@ -77,6 +77,6 @@ private:
 
     // ---- TEMPORARY ----
     float yaw_temp = 0.0;
-    std::array<float, 3> position_temp = {3.0, 2.0, 10.0};
+    std::array<float, 3> position_temp = {3.0, 2.0, 40.0};
 
 };

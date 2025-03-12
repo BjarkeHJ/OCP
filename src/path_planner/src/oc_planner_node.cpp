@@ -66,8 +66,10 @@ void OcPlannerNode::pcd_timer_callback() {
     
     /* Publish current filtered point cloud */
     sensor_msgs::msg::PointCloud2 output;
-    pcl::toROSMsg(*PathPlanner->VoxMap->OCM.local_cloud, output);
-    output.header.frame_id = "lidar_frame";
+    // pcl::toROSMsg(*PathPlanner->VoxMap->OCM.local_cloud, output);
+    pcl::toROSMsg(*PathPlanner->skel_op->good_points, output);
+    // output.header.frame_id = "lidar_frame";
+    output.header.frame_id = "odom";
     output.header.stamp = this->get_clock()->now();
     this->pcd_pub_->publish(output);
 }

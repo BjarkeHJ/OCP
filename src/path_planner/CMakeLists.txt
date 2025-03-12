@@ -41,7 +41,8 @@ add_executable(${EXEC_NAME}
               src/oc_planner_node.cpp
               src/oc_planner.cpp
               src/rosa_main.cpp
-              src/voxel_mapper.cpp)
+              src/voxel_mapper.cpp
+              src/Extra_Del.cpp)
 
 # Link non-ROS2 packages
 target_include_directories(${EXEC_NAME} PRIVATE ${PCL_INCLUDE_DIRS})
