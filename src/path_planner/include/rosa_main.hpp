@@ -82,7 +82,10 @@ class RosaPoints {
         Eigen::MatrixXd pts_mat; // cloud in matrix format
         Eigen::MatrixXd nrs_mat; // normals in matrix format
 
-        Eigen::MatrixXd vertices;
+        Eigen::MatrixXd skelver;
+        Eigen::MatrixXd corresp;
+        Eigen::MatrixXi skeladj;
+
     };
 
 public:
@@ -94,16 +97,20 @@ public:
     rosa RC; // data structure for Rosa Cloud
 
     /* Temp... */
-    pcl::PointCloud<pcl::PointXYZ>::Ptr good_points;
+    pcl::PointCloud<pcl::PointXYZ>::Ptr vis_curr_cloud;
+    pcl::PointCloud<pcl::PointXYZ>::Ptr vis_rosa_pts;
+
     
 private:
     /* Params */
     int ne_KNN = 10;
     int k_KNN = 10;
-    int num_rosa_iter = 5;
-    float th_dist = 0.01;
-    float r_range = 5.0;
-    float delta = 0.01; // used for distance query in 
+    int num_drosa_iter = 5;
+    int num_dcrosa_iter = 5;
+    float r_range = 0.1;    
+    float th_mah = 0.1 * r_range; // Mahalanobis distance for
+    float delta = 0.5; // used for distance query in 
+    float sample_radius = 0.05; // used in lineextract
 
     /* Data */
     int pcd_size_;
@@ -114,16 +121,17 @@ private:
     Eigen::MatrixXd dpset;
     Eigen::MatrixXd vset; // Vectors orthogonal to the surface normals...  
     Eigen::MatrixXd vvar;
-    pcl::PointCloud<pcl::PointXYZ>::Ptr skeleton_vertice_cloud;
     pcl::KdTreeFLANN<pcl::PointXYZ> rosa_tree;
+    pcl::PointCloud<pcl::PointXYZ>::Ptr skeleton_ver_cloud;
+    Eigen::MatrixXi adj_before_collapse;
     
-
     /* Functions */
     void set_cloud(pcl::PointCloud<pcl::PointXYZ>::Ptr &cloud);
     void adj_matrix(float &range_r);
     float pt_similarity_metric(pcl::PointXYZ &p1, pcl::Normal &v1, pcl::PointXYZ &p2, pcl::Normal &v2, float &range_r);
     void normalize();
     void normal_estimation();
+
     void rosa_drosa();
     void rosa_initialize(pcl::PointCloud<pcl::PointXYZ>::Ptr &cloud, pcl::PointCloud<pcl::Normal>::Ptr &normals);
     Eigen::Matrix3d create_orthonormal_frame(Eigen::Vector3d &v);
@@ -135,6 +143,10 @@ private:
     Eigen::Vector3d symmnormal_smooth(Eigen::MatrixXd& V, Eigen::MatrixXd& w);
     Eigen::Vector3d closest_projection_point(Eigen::MatrixXd& P, Eigen::MatrixXd& V);
 
+    void rosa_dcrosa();
+    void rosa_lineextract();
+
+    int argmax_eigen(Eigen::MatrixXd &x);
 
     /* Temporary */
     bool save_flag = true; // for saving instance of point cloud

@@ -16,6 +16,7 @@ void OcPlanner::init() {
 void OcPlanner::OCPlan() {
     VoxMap->update_map();
     skel_op->rosa_main(P.cloud_filtered);
+    // skel_op->rosa_main(VoxMap->OCM.global_map);
 }
 
 void OcPlanner::get_segment() {
